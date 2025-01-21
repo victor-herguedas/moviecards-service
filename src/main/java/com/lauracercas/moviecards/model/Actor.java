@@ -7,8 +7,9 @@
 
 package com.lauracercas.moviecards.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -16,83 +17,85 @@ import java.util.Objects;
 
 @Entity
 public class Actor {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 
-    private String name;
+	private String name;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date birthDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date birthDate;
 
-    private String country;
+	private String country;
 
-    @ManyToMany(mappedBy = "actors")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date deadDate;
 
-    @JsonIgnoreProperties("actors") // Añadido
-    private List<Movie> movies;
+	@ManyToMany(mappedBy = "actors")
+	@JsonIgnoreProperties("actors") // Añadido
+	private List<Movie> movies;
 
-    public Actor() {
-    }
+	public Actor() {
+	}
 
-    public Actor(Integer id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+	public Actor(Integer id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return this.id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return this.name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public Date getBirthDate() {
-        return birthDate;
-    }
+	public Date getBirthDate() {
+		return this.birthDate;
+	}
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
-    }
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
 
-    public String getCountry() {
-        return country;
-    }
+	public String getCountry() {
+		return this.country;
+	}
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
+	public void setCountry(String country) {
+		this.country = country;
+	}
 
-    public List<Movie> getMovies() {
-        return movies;
-    }
+	public List<Movie> getMovies() {
+		return this.movies;
+	}
 
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
-    }
+	public void setMovies(List<Movie> movies) {
+		this.movies = movies;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Actor actor = (Actor) o;
-        return Objects.equals(id, actor.id) && Objects.equals(name, actor.name)
-                && Objects.equals(birthDate, actor.birthDate) && Objects.equals(country, actor.country);
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || this.getClass() != o.getClass())
+			return false;
+		final Actor actor = (Actor) o;
+		return Objects.equals(this.id, actor.id) && Objects.equals(this.name, actor.name)
+				&& Objects.equals(this.birthDate, actor.birthDate) && Objects.equals(this.country, actor.country);
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, birthDate, country);
-    }
+	@Override
+	public int hashCode() {
+		return Objects.hash(this.id, this.name, this.birthDate, this.country);
+	}
 }
