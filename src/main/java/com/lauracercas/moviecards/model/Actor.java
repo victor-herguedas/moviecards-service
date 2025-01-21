@@ -83,6 +83,14 @@ public class Actor {
 		this.movies = movies;
 	}
 
+	public Date getDeadDate() {
+		return this.deadDate;
+	}
+
+	public void setDeadDate(Date deadDate) {
+		this.deadDate = deadDate;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
